@@ -319,12 +319,6 @@ public class ClassPathScanner implements ResourceAndClassScanner {
         }
 
         FeatureDetector featureDetector = new FeatureDetector(classLoader);
-        if (featureDetector.isJBossVFSv3Available() && "vfs".equals(protocol)) {
-            JBossVFSv3ClassPathLocationScanner locationScanner = new JBossVFSv3ClassPathLocationScanner();
-            locationScannerCache.put(protocol, locationScanner);
-            resourceNameCache.put(locationScanner, new HashMap<URL, Set<String>>());
-            return locationScanner;
-        }
         if (featureDetector.isOsgiFrameworkAvailable() && (
                 "bundle".equals(protocol) // Felix
                         || "bundleresource".equals(protocol)) //Equinox
